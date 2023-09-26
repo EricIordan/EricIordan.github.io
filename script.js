@@ -3,17 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const contactPreview = document.getElementById('contactPreview');
 
-    // Función para quitar acentos de una cadena de texto
     function quitarAcentos(texto) {
         return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
     searchInput.addEventListener('input', () => {
-        const searchValue = quitarAcentos(searchInput.value.toLowerCase()); // Quitar acentos y luego convertir a minúsculas
+        const searchValue = quitarAcentos(searchInput.value.toLowerCase());
         let firstMatchingContact = null;
 
         contacts.forEach(contact => {
-            const name = quitarAcentos(contact.querySelector('h2').textContent).toLowerCase(); // Quitar acentos y luego convertir a minúsculas
+            const name = quitarAcentos(contact.querySelector('h2').textContent).toLowerCase();
             if (name.includes(searchValue)) {
                 contact.style.display = 'block';
                 if (!firstMatchingContact) {
@@ -41,4 +40,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
